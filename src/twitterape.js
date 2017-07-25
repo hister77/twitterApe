@@ -47,7 +47,7 @@ export default class TwitterApe extends Twitter {
     });
 
     const composeImage = () => {
-      const header = `Trending (${moment().format('h:mm a  D/M/YYYY')},  Warsaw):`;
+      const header = `Trending (${moment().format('h:mm a  D/M/YYYY')}, Poland):`;
       const img = new Image(this.currentTrends, header);
       return img.makeBanner()
         .then(imgPath => toBase64(imgPath))

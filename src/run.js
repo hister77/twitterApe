@@ -1,7 +1,7 @@
 import winston from 'winston';
 import TwitterApe from './index';
 
-const monkey = new TwitterApe('/home/hister/Kucu/node/gits/twitterApe/public/pics');
+const monkey = new TwitterApe();
 
 setInterval(() => {
   monkey.bannerify()
