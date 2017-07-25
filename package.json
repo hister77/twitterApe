@@ -1,0 +1,46 @@
+{
+  "name": "twitterApe",
+  "version": "1.0.1",
+  "engines": {
+    "node": "~6.12.1"
+  },
+  "dependencies": {
+    "jimp": "^0.2.28",
+    "lodash": "^4.17.4",
+    "moment": "^2.18.1",
+    "transliteration": "^1.6.2",
+    "twitter": "^1.7.0",
+    "winston": "^2.3.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.6.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.7.0",
+    "mocha": "^3.4.2"
+  },
+  "description": "Titter bot for randomizing user settings",
+  "main": "lib/index.js",
+  "scripts": {
+    "start": "npm run build && mocha && node lib/run.js",
+    "build": "babel src -d lib",
+    "test": "mocha",
+    "mocha-test": "mocha",
+    "rb": "eslint src/twitterape.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hister77/twitterApe.git"
+  },
+  "keywords": [
+    "twitter",
+    "bot"
+  ],
+  "author": "hister77",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hister77/twitterApe/issues"
+  },
+  "homepage": "https://github.com/hister77/twitterApe#readme"
+}
