@@ -6,21 +6,38 @@ import config from './../config';
 const utils = {
 
   rollFile() {
+    const ext = ['.jpg', '.bmp', '.png'];
+
+    const extImage = file => ext.includes(path.extname(file));
+
     const rollIndex = arr => arr[Math.floor(Math.random() * arr.length)];
 
-    const isFile = (thisPath, done) => {
+    let count = 0;
+
+    const isImageFile = (thisPath, done) => {
       fs.stat(thisPath, (err, stats) => {
-        if (err) done(err);
-        if (stats.isDirectory()) rollPath(thisPath, done);
-        else if (stats.isFile()) done(null, thisPath);
+        if (err) return done(err);
+        if (!(stats.isDirectory() || stats.isFile())
+          || (stats.isFile() && !extImage(thisPath))) return rollPath(null, done);
+        if (stats.isDirectory()) {
+          if (count >= 10) return done(new RangeError('Couldn\'t find any valid files. '));
+          count += 1;
+          return rollPath(thisPath, done);
+        }
+        return done(null, thisPath);
       });
     };
 
     const rollPath = (subPath, done) => {
       const basePath = subPath || rollIndex(config.paths);
       fs.readdir(basePath, (err, paths) => {
-        if (err) throw err;
-        isFile(path.resolve(basePath, rollIndex(paths)), done);
+        if (err) done(err);
+        if (paths.length === 0) {
+          if (count >= 10) return done(new RangeError('Could\'t find non-empty directiories'));
+          count += 1;
+          return rollPath(null, done);
+        }
+        return isImageFile(path.resolve(basePath, rollIndex(paths)), done);
       });
     };
 
