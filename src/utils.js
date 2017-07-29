@@ -6,7 +6,7 @@ import config from './../config';
 const utils = {
 
   rollFile() {
-    const ext = ['.jpg', '.bmp', '.png'];
+    const ext = ['.jpg', '.jpeg', '.bmp', '.png'];
 
     const extImage = file => ext.includes(path.extname(file));
 
